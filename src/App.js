@@ -10,6 +10,8 @@ import Batch from './components/Batch';
 import React, { useState } from 'react';
 import SignUp from './components/SignUp';
 import Coupons from './components/Coupons';
+import StudyMaterial from './components/StudyMaterial';
+
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -29,6 +31,7 @@ function App() {
           <Route path="/timetable" element={<Timetable/>} />
   
           <Route path="/batch" element={<Batch/>} />
+          <Route path="/material" element={<StudyMaterial/>} />
 
             
           </Routes>
