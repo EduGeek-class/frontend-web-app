@@ -1,10 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
-import { ModalBody } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
-import ModalTitle from "react-bootstrap/ModalTitle";
-import { ModalFooter } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { createBatch} from "../apiClient/apiClient";
 

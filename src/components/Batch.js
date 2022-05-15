@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getVideos } from "../apiClient/apiClient";
+import AddVideoModal from "./AddVideoModal";
 
 
 import ReactPlayer from "react-player";
@@ -28,7 +29,14 @@ function Batch() {
             <Sidenav />
           </Col>
           <Col xs={6}>
-            <h2>Class 10 Science</h2>
+            <Row>
+              <Col xs={6}>
+                <h2>Class 10 Science</h2>
+              </Col>
+              <Col xs={6}>
+                <AddVideoModal videos={videos} setVideos={setVideos}/>
+              </Col>
+            </Row>
             <div style={{ marginTop: "5%" }}>
               <div onContextMenu={(e) => e.preventDefault()}>
                 <Col style={{ padding: "20px" }}>
