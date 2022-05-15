@@ -24,15 +24,13 @@ function App() {
       <Navtop/>
       {/* <Adminpage/> */}
       <Routes>
-
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={<SignUp/>}/>
-          <Route path="/batches" element={<Adminpage/>} />
-          <Route path="/coupons" element={<Coupons/>} />
-          <Route path="/timetable" element={<Timetable/>} />
+        <Route path="/" element={<Login/>}/>
+          <Route path="/batches" element={localStorage.getItem("edugeek-authorized") === "1" ? <Adminpage/> : <Login/>} />
+          <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
+          <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
   
-          <Route path="/batch" element={<Batch/>} />
-          <Route path="/material" element={<StudyMaterial/>} />
+          <Route path="/batch" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+          <Route path="/material" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
 
 
             
