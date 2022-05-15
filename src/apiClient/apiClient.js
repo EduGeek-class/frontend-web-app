@@ -36,6 +36,16 @@ export const getMaterial = async () => {
     return res;
 }
 
+export const addMaterial = async (title, class_number, material) => {
+    var formdata = new FormData();
+    formdata.append('title', title);
+    formdata.append('class_number', class_number);
+    formdata.append('material', material);
+
+    const res = await axios.post(baseUrl + '/material/', formdata);
+    return res;
+}
+
 export const getAdmin = async () => {
     const res = await axios.get(baseUrl + '/site-admin/')
 

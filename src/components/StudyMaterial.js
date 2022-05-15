@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getMaterial } from "../apiClient/apiClient";
+import AddMaterialModal from "./AddMaterialModal";
 
 
 import ReactPlayer from "react-player";
@@ -16,9 +17,8 @@ function StudyMaterial() {
   useEffect(async () => {
     const res = await getMaterial();
     setMaterial(res.data);
-    console.log(res.data);
-    console.log(material);
   }, []);
+
   return (
     <div>
       <Container>
@@ -27,7 +27,14 @@ function StudyMaterial() {
             <Sidenav />
           </Col>
           <Col xs={6}>
-            <h2>Class 10 Science</h2>
+            <Row>
+              <Col xs={6}>
+                <h2>Class 10 Science</h2>
+              </Col>
+              <Col xs={6}>
+                <AddMaterialModal/>
+              </Col>
+            </Row>
             <div style={{ marginTop: "5%" }}>
               <div onContextMenu={(e) => e.preventDefault()}>
                 <Col style={{ padding: "20px" }}>
