@@ -10,6 +10,8 @@ import Batch from './components/Batch';
 import React, { useState } from 'react';
 import SignUp from './components/SignUp';
 import Coupons from './components/Coupons';
+import StudyMaterial from './components/StudyMaterial';
+
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -22,16 +24,16 @@ function App() {
       <Navtop/>
       {/* <Adminpage/> */}
       <Routes>
-        <Route 
-          path="/" 
-          element={
-            <Login/>
-          }/>
-        {/* <Route path="/" element={<SignUp/>}/> */}
-        <Route path="/batches" element={localStorage.getItem("edugeek-authorized") === "1" ? <Adminpage/> : <Login/>} />
-        <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
-        <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
-        <Route path="/batch" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/" element={<SignUp/>}/>
+          <Route path="/batches" element={<Adminpage/>} />
+          <Route path="/coupons" element={<Coupons/>} />
+          <Route path="/timetable" element={<Timetable/>} />
+  
+          <Route path="/batch" element={<Batch/>} />
+          <Route path="/material" element={<StudyMaterial/>} />
+
 
             
           </Routes>

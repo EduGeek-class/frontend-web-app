@@ -10,7 +10,7 @@ function Sidenav() {
     <div>
       <Navigation
         // you can use your own router's api to get pathname
-        activeItemId="/management/members"
+        activeItemId="/batch"
         onSelect={({ itemId }) => {
           // maybe push to the route
           // history.push(itemId);
@@ -18,54 +18,13 @@ function Sidenav() {
         items={[
         
           {
-            title: "Overview",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Attendance",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Assignment",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Test",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Announcement",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
             title: "Video",
-            itemId: "/timetable",
+            itemId: "/batch",
             // you can use your own custom Icon component as well
             // icon is optional
             // elemBefore: () => <Icon name="inbox" />,
           },
-          {
-            title: "Live Class",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
+         
           {
             title: "Study Material",
             itemId: "/timetable",
@@ -73,49 +32,23 @@ function Sidenav() {
             // icon is optional
             // elemBefore: () => <Icon name="inbox" />,
           },
-          {
-            title: "Settings",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          
+         
           {
             title: "Students",
             itemId: "/management",
             // elemBefore: () => <Icon name="users" />,
-            subNav: [
-              {
-                title: "Video",
-                itemId: "/management/projects",
-              },
-              {
-                title: "Settings",
-                itemId: "/management/members",
-              },
-            ],
+            // subNav: [
+            //   {
+            //     title: "Video",
+            //     itemId: "/management/projects",
+            //   },
+            //   {
+            //     title: "Settings",
+            //     itemId: "/management/members",
+            //   },
+            // ],
           },
-          {
-            title: "Setting",
-            itemId: "/another",
-            subNav: [
-              {
-                title: "Teams",
-                itemId: "/management/teams",
-              },
-            ],
-          },
-          {
-            title: "Video",
-            itemId: "/another",
-            subNav: [
-              {
-                title: "Teams",
-                itemId: "/management/teams",
-              },
-            ],
-          },
+         
         ]}
       />
     </div>

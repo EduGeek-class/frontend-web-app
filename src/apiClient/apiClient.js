@@ -16,7 +16,16 @@ export const getBatches = async () => {
     return res
 }
 
+export const getVideos = async () => {
+    const res = await axios.get(baseUrl + '/courses/')
+    return res
+}
+export const getMaterial = async () => {
+    const res = await axios.get(baseUrl + '/material/')
+
+
 export const getAdmin = async () => {
     const res = await axios.get(baseUrl + '/site-admin/')
+
     return res
 }
