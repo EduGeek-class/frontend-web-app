@@ -15,3 +15,8 @@ export const getBatches = async () => {
     const res = await axios.get(baseUrl + '/batches/')
     return res
 }
+
+export const getAdmin = async () => {
+    const res = await axios.get(baseUrl + '/site-admin/')
+    return res
+}

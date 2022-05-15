@@ -4,7 +4,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaBell } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 function Navtop() {
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -45,7 +47,11 @@ function Navtop() {
                 <NavDropdown.Item href="#action/3.2">
                   Settings
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item 
+                  onClick={() => {
+                    localStorage.setItem('edugeek-authorized', 0);
+                    navigate('/', {replace: true});
+                  }}>
                   Logout
                 </NavDropdown.Item>
               

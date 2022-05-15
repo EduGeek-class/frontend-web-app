@@ -18,17 +18,20 @@ function App() {
   return (
     
     <div className="App">
+      <BrowserRouter>
       <Navtop/>
       {/* <Adminpage/> */}
-      <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={<SignUp/>}/>
-          <Route path="/batches" element={<Adminpage/>} />
-          <Route path="/coupons" element={<Coupons/>} />
-          <Route path="/timetable" element={<Timetable/>} />
-  
-          <Route path="/batch" element={<Batch/>} />
+        <Route 
+          path="/" 
+          element={
+            <Login/>
+          }/>
+        {/* <Route path="/" element={<SignUp/>}/> */}
+        <Route path="/batches" element={localStorage.getItem("edugeek-authorized") === "1" ? <Adminpage/> : <Login/>} />
+        <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
+        <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
+        <Route path="/batch" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
 
             
           </Routes>
