@@ -20,10 +20,11 @@ function App() {
   return (
     
     <div className="App">
+      <BrowserRouter>
       <Navtop/>
       {/* <Adminpage/> */}
-      <BrowserRouter>
       <Routes>
+
         <Route path="/login" element={<Login/>}/>
         <Route path="/" element={<SignUp/>}/>
           <Route path="/batches" element={<Adminpage/>} />
@@ -32,6 +33,7 @@ function App() {
   
           <Route path="/batch" element={<Batch/>} />
           <Route path="/material" element={<StudyMaterial/>} />
+
 
             
           </Routes>
