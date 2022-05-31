@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = 'http://edugeek.pythonanywhere.com';
 
 export const createBatch = async (batch_start, batch_code, course) => {
     var body = {
