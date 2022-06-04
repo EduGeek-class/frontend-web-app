@@ -8,7 +8,7 @@ import Sidenav from "./Sidenav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getMaterial } from "../apiClient/apiClient";
 import AddMaterialModal from "./AddMaterialModal";
-import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
+
 
 import ReactPlayer from "react-player";
 function StudyMaterial() {
@@ -46,10 +46,8 @@ function StudyMaterial() {
                        
                       
                       <Card.Title>Title: {data.title}</Card.Title>
-                      <Document file={data.material}>
-                        <Page scale={2.0} pageNumber={1} />
-                      </Document>
-                      {/* <Button href={data.material}>Link</Button>  */}
+                      
+                      <Button href={data.material}>Link</Button> 
                         
                       </Card.Body>
                     </Card>
