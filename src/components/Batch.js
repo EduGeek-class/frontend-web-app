@@ -13,7 +13,7 @@ import AddVideoModal from "./AddVideoModal";
 import ReactPlayer from "react-player";
 function Batch() {
   const [videos, setVideos] = useState([]);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(async () => {
     const res = await getVideos();
@@ -39,16 +39,16 @@ function Batch() {
             </Row>
             <div style={{ marginTop: "5%" }}>
               <div onContextMenu={(e) => e.preventDefault()}>
-                <Col style={{ padding: "20px" }}>
+                <Col style={{ padding: "20px"}}>
                   {videos.map((video) => (
-                    <Card>
+                    <Card style={{marginBottom:"2rem"}}>
                       <Card.Header as="h5">Class: {video.class_number}</Card.Header>
                       <Card.Body>
                         <ReactPlayer
                           config={{ file: { attributes: { controlsList: 'nodownload' } } }}
 
                           url={video.video}
-                          playing={playing}
+                          setPlaying={true}
                           controls
                           width="100%"
                           

@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import SignUp from './components/SignUp';
 import Coupons from './components/Coupons';
 import StudyMaterial from './components/StudyMaterial';
+import PdfViewer from './components/PdfViewer';
 
 function App() {
   // const [token, setToken] = useState();
@@ -31,6 +32,7 @@ function App() {
   
           <Route path="/batch" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
           <Route path="/material" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
+          <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
 
 
             

@@ -8,7 +8,7 @@ import Sidenav from "./Sidenav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getMaterial } from "../apiClient/apiClient";
 import AddMaterialModal from "./AddMaterialModal";
-
+import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
 
 import ReactPlayer from "react-player";
 function StudyMaterial() {
@@ -39,14 +39,17 @@ function StudyMaterial() {
               <div onContextMenu={(e) => e.preventDefault()}>
                 <Col style={{ padding: "20px" }}>
                   {material.map((data) => (
-                    <Card>
+                    <Card style={{marginBottom:"2rem"}}>
                       <Card.Header as="h5">Class: {data.class_number}</Card.Header>
                       <Card.Img variant="top" src="https://images.unsplash.com/photo-1648737155328-0c0012cf2f20" />
                       <Card.Body>
                        
                       
                       <Card.Title>Title: {data.title}</Card.Title>
-                      <Button href={data.material}>Link</Button> 
+                      <Document file={data.material}>
+                        <Page scale={2.0} pageNumber={1} />
+                      </Document>
+                      {/* <Button href={data.material}>Link</Button>  */}
                         
                       </Card.Body>
                     </Card>

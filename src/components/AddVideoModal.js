@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { addVideos } from "../apiClient/apiClient";
-
+import Swal from 'sweetalert2'
 import { useState } from "react";
 
 var title;
@@ -21,7 +21,14 @@ function AddVideoModal(videos, setVideos) {
     event.preventDefault();
     const res = await addVideos(title, class_number, video);
     handleClose();
-    window.location.reload();
+    Swal.fire({
+      icon: 'success',
+      title: 'Congratulations...',
+      text: 'File uploaded successfully',
+    })
+    setTimeout(function(){
+      window.location.reload();
+   }, 2000);
   }
 
   return (
