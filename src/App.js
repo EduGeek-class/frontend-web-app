@@ -12,7 +12,7 @@ import SignUp from './components/SignUp';
 import Coupons from './components/Coupons';
 import StudyMaterial from './components/StudyMaterial';
 import PdfViewer from './components/PdfViewer';
-
+import Notif from './components/Notif'
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -29,8 +29,8 @@ function App() {
           <Route path="/batches" element={localStorage.getItem("edugeek-authorized") === "1" ? <Adminpage/> : <Login/>} />
           <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
           <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
-  
-          <Route path="/batch" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+          <Route path="/notif" element={localStorage.getItem("edugeek-authorized") === "1" ? <Notif/> : <Login/>}/>
+          <Route path="/video" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
           <Route path="/material" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
           <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
 

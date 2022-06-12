@@ -13,7 +13,7 @@ function Sidenav() {
          
 
       <ListGroup style={{fontSize:"20px",color:"3B8854"}} >
-    <ListGroup.Item><Link style={{textDecoration:"none"}} to="/batch">Video</Link></ListGroup.Item>
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to="/video">Video</Link></ListGroup.Item>
     <ListGroup.Item><Link style={{textDecoration:"none"}} to="/material">Study Material</Link></ListGroup.Item>
     <ListGroup.Item><Link style={{textDecoration:"none"}} to="/profiles">Students</Link></ListGroup.Item>
     

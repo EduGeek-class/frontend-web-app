@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'http://edugeek.pythonanywhere.com';
+const baseUrl = 'https://edugeek.pythonanywhere.com';
 
 export const createBatch = async (batch_start, batch_code, course) => {
     var body = {
@@ -8,16 +8,16 @@ export const createBatch = async (batch_start, batch_code, course) => {
         'batch_code' : batch_code,
         'course' : course
     }
-    await axios.post(baseUrl + '/batches/', body)
+    await axios.post(baseUrl + '/batch/', body)
 }
 
 export const getBatches = async () => {
-    const res = await axios.get(baseUrl + '/batches/')
+    const res = await axios.get(baseUrl + '/batch/')
     return res
 }
 
 export const getVideos = async () => {
-    const res = await axios.get(baseUrl + '/courses/')
+    const res = await axios.get(baseUrl + '/video/')
     return res
 }
 
@@ -27,12 +27,12 @@ export const addVideos = async (title, class_number, video) => {
     formdata.append('class_number', class_number);
     formdata.append('video', video);
 
-    const res = await axios.post(baseUrl + '/courses/', formdata);
+    const res = await axios.post(baseUrl + '/video/', formdata);
     return res;
 }
 
 export const getMaterial = async () => {
-    const res = await axios.get(baseUrl + '/material/')
+    const res = await axios.get(baseUrl + '/study_material/')
     return res;
 }
 
@@ -42,12 +42,16 @@ export const addMaterial = async (title, class_number, material) => {
     formdata.append('class_number', class_number);
     formdata.append('material', material);
 
-    const res = await axios.post(baseUrl + '/material/', formdata);
+    const res = await axios.post(baseUrl + '/study_material/', formdata);
     return res;
+}
+export const getNotif = async () => {
+    const res = await axios.get(baseUrl + '/notif/')
+    return res
 }
 
 export const getAdmin = async () => {
-    const res = await axios.get(baseUrl + '/site-admin/')
+    const res = await axios.get(baseUrl + '/admins/')
 
     return res
 }
