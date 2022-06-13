@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'https://edugeek.pythonanywhere.com';
+const baseUrl = 'http://localhost:8000';
 
 export const createBatch = async (batch_start, batch_code, course) => {
     var body = {
@@ -25,9 +25,15 @@ export const addVideos = async (title, class_number, video) => {
     var formdata = new FormData();
     formdata.append('title', title);
     formdata.append('class_number', class_number);
-    formdata.append('video', video);
+    for (let i = 0 ; i < video.length ; i++) {
+        formdata.append("video", video[i]);
+    }
 
-    const res = await axios.post(baseUrl + '/video/', formdata);
+    const res = await axios.post(baseUrl + '/video/', formdata, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+          }
+    });
     return res;
 }
 
@@ -40,9 +46,15 @@ export const addMaterial = async (title, class_number, material) => {
     var formdata = new FormData();
     formdata.append('title', title);
     formdata.append('class_number', class_number);
-    formdata.append('material', material);
+    for (let i = 0 ; i < material.length ; i++) {
+        formdata.append("material", material[i]);
+    }
 
-    const res = await axios.post(baseUrl + '/study_material/', formdata);
+    const res = await axios.post(baseUrl + '/study_material/', formdata, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+          }
+    });
     return res;
 }
 export const getNotif = async () => {

@@ -82,9 +82,9 @@ function AddMaterialModal() {
             >
               <Form.Label>material</Form.Label>
             <Form.Control type="file" onChange={(e) => {
-                      material = e.target.files[0];
+                      material = e.target.files;
                       console.log(material);
-                    }} />
+                    }} multiple/>
             </Form.Group>
 
             

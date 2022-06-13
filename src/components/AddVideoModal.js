@@ -20,6 +20,7 @@ function AddVideoModal(videos, setVideos) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await addVideos(title, class_number, video);
+    console.log(res);
     handleClose();
     Swal.fire({
       icon: 'success',
@@ -82,9 +83,9 @@ function AddVideoModal(videos, setVideos) {
             >
               <Form.Label>Video</Form.Label>
             <Form.Control type="file" onChange={(e) => {
-                      video = e.target.files[0];
+                      video = e.target.files;
                       console.log(video);
-                    }} />
+                    }} multiple />
             </Form.Group>
 
             
