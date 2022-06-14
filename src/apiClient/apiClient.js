@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = 'http://edugeeks.pythonanywhere.com';
 
 export const createBatch = async (batch_start, batch_code, course) => {
     var body = {
@@ -65,5 +65,10 @@ export const getNotif = async () => {
 export const getAdmin = async () => {
     const res = await axios.get(baseUrl + '/admins/')
 
+    return res
+}
+
+export const getStudents = async () => {
+    const res = await axios.get(baseUrl + '/user/')
     return res
 }

@@ -25,7 +25,7 @@ function AddVideoModal(videos, setVideos) {
     Swal.fire({
       icon: 'success',
       title: 'Congratulations...',
-      text: 'File uploaded successfully',
+      text: 'Files uploaded successfully',
     })
     setTimeout(function(){
       window.location.reload();

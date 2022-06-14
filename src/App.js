@@ -13,6 +13,7 @@ import Coupons from './components/Coupons';
 import StudyMaterial from './components/StudyMaterial';
 import PdfViewer from './components/PdfViewer';
 import Notif from './components/Notif'
+import Students from './components/Students';
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/video" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
           <Route path="/material" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
           <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
+          <Route path="/profiles" element={localStorage.getItem("edugeek-authorized") === "1" ? <Students/> : <Login/>}/>
 
 
             
