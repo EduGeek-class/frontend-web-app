@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { getVideos } from "../apiClient/apiClient";
 import AddVideoModal from "./AddVideoModal";
 
@@ -15,9 +15,10 @@ import Notif from "./Notif";
 function Batch() {
   const [videos, setVideos] = useState([]);
   const [playing, setPlaying] = useState(false);
+  const {batch_code} = useParams();
 
   useEffect(async () => {
-    const res = await getVideos();
+    const res = await getVideos(batch_code);
     setVideos(res.data);
     console.log(res.data);
     console.log(videos);
@@ -27,13 +28,13 @@ function Batch() {
       <Container>
         <Row>
           <Col>
-            <Sidenav />
+            <Sidenav batch_code={batch_code} />
           </Col>
           <Col xs={6}>
             <Row>
-              <Col xs={6}>
+              {/* <Col xs={6}>
                 <h2>Class 10 Science</h2>
-              </Col>
+              </Col> */}
               <Col xs={6}>
                 <AddVideoModal videos={videos} setVideos={setVideos}/>
               </Col>
@@ -41,9 +42,10 @@ function Batch() {
             <div style={{ marginTop: "5%" }}>
               <div onContextMenu={(e) => e.preventDefault()}>
                 <Col style={{ padding: "20px"}}>
+                  
                   {videos.map((video) => (
+                    
                     <Card style={{marginBottom:"2rem"}}>
-                      <Card.Header as="h5">Class: {video.class_number}</Card.Header>
                       <Card.Body>
                         <ReactPlayer
                           config={{ file: { attributes: { controlsList: 'nodownload' } } }}

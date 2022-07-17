@@ -24,21 +24,19 @@ function Navtop() {
             <Navbar.Text>
              
               {/* <a href="#login">User</a> */}
-              <NavDropdown title="User" id="basic-nav-dropdown">
+              <Nav>
              
-                <NavDropdown.Item href="#action/3.1">
-                  Profile
-                </NavDropdown.Item>
+               
                 
-                <NavDropdown.Item 
+                <Nav.Link
                   onClick={() => {
                     localStorage.setItem('edugeek-authorized', 0);
                     navigate('/', {replace: true});
                   }}>
                   Logout
-                </NavDropdown.Item>
+                </Nav.Link>
               
-              </NavDropdown>
+              </Nav>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

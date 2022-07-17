@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import { useState } from "react";
 
 var title;
-var class_number;
+var batch_code;
 var video;
 
 
@@ -19,7 +19,7 @@ function AddVideoModal(videos, setVideos) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await addVideos(title, class_number, video);
+    const res = await addVideos(title, batch_code, video);
     console.log(res);
     handleClose();
     Swal.fire({
@@ -57,8 +57,11 @@ function AddVideoModal(videos, setVideos) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Class Number</Form.Label>
-              <Form.Select onChange={(e) => {
+              <Form.Label>Batch Code</Form.Label>
+              <Form.Control type="text" placeholder="Batch Code" onChange={(e) => {
+                      batch_code = e.target.value;
+                    }}/>
+              {/* <Form.Select onChange={(e) => {
                       class_number = e.target.value;
                       console.log(class_number)
                     }}>
@@ -75,7 +78,7 @@ function AddVideoModal(videos, setVideos) {
                 <option value="10">Ten</option>
                 <option value="11">Eleven</option>
                 <option value="12">Twelve</option>
-            </Form.Select>
+            </Form.Select> */}
             </Form.Group>
             <Form.Group
               className="mb-3"

@@ -31,8 +31,8 @@ function App() {
           <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
           <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
           <Route path="/notif" element={localStorage.getItem("edugeek-authorized") === "1" ? <Notif/> : <Login/>}/>
-          <Route path="/video" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
-          <Route path="/material" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
+          <Route path="/video/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+          <Route path="/material/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
           <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
           <Route path="/profiles" element={localStorage.getItem("edugeek-authorized") === "1" ? <Students/> : <Login/>}/>
 

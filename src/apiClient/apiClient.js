@@ -1,12 +1,15 @@
 import axios from "axios";
 
-const baseUrl = 'http://edugeeks.pythonanywhere.com';
+const baseUrl = 'https://edugeeksuser.pythonanywhere.com/';
 
-export const createBatch = async (batch_start, batch_code, course) => {
+export const createBatch = async (batch_start, batch_code, course,category,subject) => {
     var body = {
         'batch_start' : batch_start, 
         'batch_code' : batch_code,
-        'course' : course
+        'course' : course,
+        'category':category,
+        'subject':subject
+
     }
     await axios.post(baseUrl + '/batch/', body)
 }
@@ -16,15 +19,15 @@ export const getBatches = async () => {
     return res
 }
 
-export const getVideos = async () => {
-    const res = await axios.get(baseUrl + '/video/')
+export const getVideos = async (batch_code) => {
+    const res = await axios.get(baseUrl + '/video/?batch_code=' + batch_code)
     return res
 }
 
-export const addVideos = async (title, class_number, video) => {
+export const addVideos = async (title, batch_code, video) => {
     var formdata = new FormData();
     formdata.append('title', title);
-    formdata.append('class_number', class_number);
+    formdata.append('batch_code', batch_code);
     for (let i = 0 ; i < video.length ; i++) {
         formdata.append("video", video[i]);
     }
@@ -37,15 +40,15 @@ export const addVideos = async (title, class_number, video) => {
     return res;
 }
 
-export const getMaterial = async () => {
-    const res = await axios.get(baseUrl + '/study_material/')
+export const getMaterial = async (batch_code) => {
+    const res = await axios.get(baseUrl + '/study_material/?batch_code=' + batch_code)
     return res;
 }
 
-export const addMaterial = async (title, class_number, material) => {
+export const addMaterial = async (title, batch_code, material) => {
     var formdata = new FormData();
     formdata.append('title', title);
-    formdata.append('class_number', class_number);
+    formdata.append('batch_code', batch_code);
     for (let i = 0 ; i < material.length ; i++) {
         formdata.append("material", material[i]);
     }

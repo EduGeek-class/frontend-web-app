@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import { useState } from "react";
 
 var title;
-var class_number;
+var batch_code;
 var material;
 
 
@@ -19,7 +19,7 @@ function AddMaterialModal() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await addMaterial(title, class_number, material);
+    const res = await addMaterial(title, batch_code, material);
     handleClose();
     Swal.fire({
       icon: 'success',
@@ -56,25 +56,10 @@ function AddMaterialModal() {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Class Number</Form.Label>
-              <Form.Select onChange={(e) => {
-                      class_number = e.target.value;
-                      console.log(class_number)
-                    }}>
-                <option>Class Number</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
-                <option value="6">Six</option>
-                <option value="7">Seven</option>
-                <option value="8">Eight</option>
-                <option value="9">Nine</option>
-                <option value="10">Ten</option>
-                <option value="11">Eleven</option>
-                <option value="12">Twelve</option>
-            </Form.Select>
+              <Form.Label>Batch Code</Form.Label>
+              <Form.Control type="text" placeholder="Batch code" onChange={(e) => {
+                      batch_code = e.target.value;
+                    }}/>
             </Form.Group>
             <Form.Group
               className="mb-3"

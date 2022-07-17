@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes ,useParams} from "react-router-dom";
 import { getMaterial } from "../apiClient/apiClient";
 import AddMaterialModal from "./AddMaterialModal";
 
@@ -14,9 +14,9 @@ import ReactPlayer from "react-player";
 import Notif from "./Notif";
 function StudyMaterial() {
   const [material, setMaterial] = useState([]);
-  
+  const { batch_code } = useParams();
   useEffect(async () => {
-    const res = await getMaterial();
+    const res = await getMaterial(batch_code);
     setMaterial(res.data);
   }, []);
 

@@ -9,7 +9,8 @@ import { useState } from "react";
 var batch_start="";
 var batch_code;
 var course="";
-
+var category="";
+var subject="";
 
 function ModalPage(batches, setBatches) {
   const [show, setShow] = useState(false);
@@ -19,11 +20,13 @@ function ModalPage(batches, setBatches) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await createBatch(batch_start, batch_code, course);
+    const res = await createBatch(batch_start, batch_code, course,category,subject);
       batches.setBatches([...batches.batches, {
       'batch_start' : batch_start, 
       'batch_code' : batch_code,
-      'course' : course
+      'course' : course,
+      'category':category,
+      'subject':subject
     }])
     handleClose();
     Swal.fire({
@@ -53,7 +56,7 @@ function ModalPage(batches, setBatches) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Batch Name</Form.Label>
-              <Form.Control type="text" placeholder="Name" onChange={(e) => {
+              <Form.Control type="text" placeholder="Ex: Class 1 Maths" onChange={(e) => {
                       course = e.target.value;
                     }}/>
             </Form.Group>
@@ -61,8 +64,26 @@ function ModalPage(batches, setBatches) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>Batch Category</Form.Label>
+              <Form.Control type="text" placeholder="Ex: Class 1" onChange={(e) => {
+                      category = e.target.value;
+                    }}/>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Subject</Form.Label>
+              <Form.Control type="text" placeholder="Ex: Maths" onChange={(e) => {
+                      subject = e.target.value;
+                    }}/>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Batch Code</Form.Label>
-              <Form.Control type="text" placeholder="eg. Phy123" onChange={(e) => {
+              <Form.Control type="text" placeholder="Ex: 220103" onChange={(e) => {
                       batch_code = e.target.value;
                     }}/>
             </Form.Group>
@@ -71,7 +92,7 @@ function ModalPage(batches, setBatches) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Batch Start Date</Form.Label>
-            <Form.Control type="text" placeholder="12-01-2020" onChange={(e) => {
+            <Form.Control type="text" placeholder="Ex: 2020-01-12" onChange={(e) => {
                       batch_start = e.target.value;
                     }} />
             </Form.Group>

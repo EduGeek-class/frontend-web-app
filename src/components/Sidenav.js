@@ -6,15 +6,15 @@ import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import { BrowserRouter ,Route} from "react-router-dom";
 import ListGroup from 'react-bootstrap/ListGroup'
 import {Link} from "react-router-dom"
-function Sidenav() {
+function Sidenav(code) {
   return (
     <div>
       
          
 
       <ListGroup style={{fontSize:"20px",color:"3B8854"}} >
-    <ListGroup.Item><Link style={{textDecoration:"none"}} to="/video">Video</Link></ListGroup.Item>
-    <ListGroup.Item><Link style={{textDecoration:"none"}} to="/material">Study Material</Link></ListGroup.Item>
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to={"/video/" + code.batch_code}>Video</Link></ListGroup.Item>
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to={"/material/" + code.batch_code} >Study Material</Link></ListGroup.Item>
     <ListGroup.Item><Link style={{textDecoration:"none"}} to="/profiles">Students</Link></ListGroup.Item>
     
     
