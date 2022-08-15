@@ -14,6 +14,8 @@ import StudyMaterial from './components/StudyMaterial';
 import PdfViewer from './components/PdfViewer';
 import Notif from './components/Notif'
 import Students from './components/Students';
+import BatchInfo from './components/BatchInfo';
+import Classpage from './components/Classpage';
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -31,10 +33,12 @@ function App() {
           <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
           <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
           <Route path="/notif" element={localStorage.getItem("edugeek-authorized") === "1" ? <Notif/> : <Login/>}/>
-          <Route path="/video/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
-          <Route path="/material/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
+          <Route path="/video/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+          <Route path="/material/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
           <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
-          <Route path="/profiles" element={localStorage.getItem("edugeek-authorized") === "1" ? <Students/> : <Login/>}/>
+          <Route path="/profiles/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Students/> : <Login/>}/>
+          <Route path="/getbatch/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <BatchInfo/> : <Login/>} />
+          <Route path="/subjects/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Classpage/> : <Login/>} />
 
 
             

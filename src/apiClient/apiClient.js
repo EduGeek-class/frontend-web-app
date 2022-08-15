@@ -1,26 +1,49 @@
 import axios from "axios";
 
-const baseUrl = 'https://edugeeksuser.pythonanywhere.com/';
-
-export const createBatch = async (batch_start, batch_code, course,category,subject) => {
+// const baseUrl = 'https://edugeeksuser.pythonanywhere.com/';
+const baseUrl='https://edugeeksbackend.pythonanywhere.com/'
+export const createBatch = async (course_validity, batch_code, course_name,price,description) => {
+ 
     var body = {
-        'batch_start' : batch_start, 
+        'course_validity' : course_validity, 
         'batch_code' : batch_code,
-        'course' : course,
-        'category':category,
-        'subject':subject
+        'course_name' : course_name,
+        'price':price,
+        'description':description
 
     }
     await axios.post(baseUrl + '/batch/', body)
+}
+
+
+
+export const createSubject = async (subject_name, batch_code, subject_code) => {
+ 
+    var body = {
+        'subject_name' : subject_name, 
+        'batch_code' : batch_code,
+        'subject_code' : subject_code,
+     
+
+    }
+    await axios.post(baseUrl + '/subject/', body)
 }
 
 export const getBatches = async () => {
     const res = await axios.get(baseUrl + '/batch/')
     return res
 }
+export const getSubject = async (batch_code) => {
+    const res = await axios.get(baseUrl + '/subject/?batch_code='+ batch_code)
+    return res
+}
 
-export const getVideos = async (batch_code) => {
-    const res = await axios.get(baseUrl + '/video/?batch_code=' + batch_code)
+export const getBatchesSingle = async (batch_code) => {
+    const res = await axios.get(baseUrl + '/batch/'+ batch_code)
+    return res
+}
+export const getVideos = async (batch_code, subject_code) => {
+    const res = await axios.get(baseUrl + '/video/?batch_code=' + batch_code + "&subject_code=" + subject_code)
     return res
 }
 
@@ -40,8 +63,8 @@ export const addVideos = async (title, batch_code, video) => {
     return res;
 }
 
-export const getMaterial = async (batch_code) => {
-    const res = await axios.get(baseUrl + '/study_material/?batch_code=' + batch_code)
+export const getMaterial = async (batch_code, subject_code) => {
+    const res = await axios.get(baseUrl + '/study_material/?batch_code=' + batch_code+ "&subject_code=" + subject_code)
     return res;
 }
 
@@ -71,7 +94,25 @@ export const getAdmin = async () => {
     return res
 }
 
-export const getStudents = async () => {
+export const getStudents = async (batch_code) => {
     const res = await axios.get(baseUrl + '/user/')
-    return res
+    console.log(res)
+    var batch_students = []
+    for (let i = 0; i < res.data.length; i++) 
+    {
+        const codes = res.data[i]["batch_codes"];
+        console.log(batch_code)
+        for (let j = 0; j < codes.length; j++) 
+        {
+            if(codes[j] == batch_code)
+            {
+                // console.log(codes[j])
+                batch_students.push(res.data[i])
+            }
+            // 
+        }
+        // console.log(res.data[i]["batch_codes"]);
+    }
+    console.log(batch_students)
+    return batch_students
 }

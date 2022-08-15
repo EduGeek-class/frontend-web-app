@@ -2,17 +2,16 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { createBatch} from "../apiClient/apiClient";
+import { createSubject} from "../apiClient/apiClient";
 import Swal from 'sweetalert2'
 import { useState } from "react";
 
-var course_validity="";
+var subject_name="";
 var batch_code;
-var course_name="";
-var price="";
-var description="";
+var subject_code;
 
-function ModalPage(batches, setBatches) {
+
+function SubModalPage(batches, setBatches) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -20,13 +19,11 @@ function ModalPage(batches, setBatches) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await createBatch(course_validity, batch_code, course_name,price,description);
+    const res = await createSubject(subject_name, batch_code, subject_code);
       batches.setBatches([...batches.batches, {
-      'course_validity' : course_validity, 
+     'subject_name':subject_name,
+     'subject_code':subject_code,
       'batch_code' : batch_code,
-      'course_name' : course_name,
-      'price':price,
-      'description':description,
       
     }])
     handleClose();
@@ -43,12 +40,12 @@ function ModalPage(batches, setBatches) {
   return (
     <div>
       <Button variant="primary" onClick={handleShow}>
-        Create batch
+        Create Subject
       </Button>
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Enter Batch details</Modal.Title>
+          <Modal.Title>Enter Subject details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -56,49 +53,31 @@ function ModalPage(batches, setBatches) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Batch Name</Form.Label>
-              <Form.Control type="text" placeholder="Eg: Class 1 Maths" onChange={(e) => {
-                      course_name = e.target.value;
+              <Form.Label>Subject Name</Form.Label>
+              <Form.Control type="text" placeholder="Eg: Maths" onChange={(e) => {
+                      subject_name = e.target.value;
                     }}/>
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Description</Form.Label>
-              <Form.Control type="text" placeholder="Eg. Organic Chemistry" onChange={(e) => {
-                      description = e.target.value;
+              <Form.Label>Subject Code</Form.Label>
+              <Form.Control type="text" placeholder="Eg. 221003" onChange={(e) => {
+                      subject_code = e.target.value;
                     }}/>
             </Form.Group>
-           
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Batch Code</Form.Label>
-              <Form.Control type="text" placeholder="Ex: 220103" onChange={(e) => {
+              <Form.Control type="text" placeholder="Eg. 2210" onChange={(e) => {
                       batch_code = e.target.value;
                     }}/>
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Course Validity</Form.Label>
-            <Form.Control type="date/time" placeholder="Ex: 2020-01-12" onChange={(e) => {
-                      course_validity = e.target.value;
-                    }} />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Price</Form.Label>
-            <Form.Control type="number" placeholder="Ex: 10000" onChange={(e) => {
-                      price = e.target.value;
-                    }} />
-            </Form.Group>
-
+           
+            
             
             <Button variant="primary" type="submit">
               Submit
@@ -110,4 +89,4 @@ function ModalPage(batches, setBatches) {
   );
 }
 
-export default ModalPage;
+export default SubModalPage;

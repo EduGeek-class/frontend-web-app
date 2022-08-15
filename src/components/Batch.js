@@ -15,10 +15,10 @@ import Notif from "./Notif";
 function Batch() {
   const [videos, setVideos] = useState([]);
   const [playing, setPlaying] = useState(false);
-  const {batch_code} = useParams();
+  const {batch_code, subject_code} = useParams();
 
   useEffect(async () => {
-    const res = await getVideos(batch_code);
+    const res = await getVideos(batch_code, subject_code);
     setVideos(res.data);
     console.log(res.data);
     console.log(videos);
@@ -28,7 +28,7 @@ function Batch() {
       <Container>
         <Row>
           <Col>
-            <Sidenav batch_code={batch_code} />
+            <Sidenav batch_code={batch_code} subject_code={subject_code} />
           </Col>
           <Col xs={6}>
             <Row>

@@ -14,9 +14,9 @@ import ReactPlayer from "react-player";
 import Notif from "./Notif";
 function StudyMaterial() {
   const [material, setMaterial] = useState([]);
-  const { batch_code } = useParams();
+  const { batch_code, subject_code } = useParams();
   useEffect(async () => {
-    const res = await getMaterial(batch_code);
+    const res = await getMaterial(batch_code, subject_code);
     setMaterial(res.data);
   }, []);
 
@@ -25,7 +25,7 @@ function StudyMaterial() {
       <Container>
         <Row>
           <Col>
-            <Sidenav />
+            <Sidenav batch_code={batch_code} subject_code={subject_code}/>
           </Col>
           <Col xs={6}>
             <Row>

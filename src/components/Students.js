@@ -5,19 +5,20 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { getStudents } from "../apiClient/apiClient";
 
 
 import ReactPlayer from "react-player";
 import Notif from "./Notif";
-function Students() {
+function Students(code) {
   const [student, setStudent] = useState([]);
+  const { batch_code, subject_code } = useParams();
   
   useEffect(async () => {
-    const res = await getStudents();
-    setStudent(res.data);
-    console.log(res.data);
+    const res = await getStudents(batch_code);
+    setStudent(res);
+    console.log(res);
     console.log(student);
   }, []);
   return (
@@ -25,7 +26,7 @@ function Students() {
       <Container>
         <Row>
           <Col>
-            <Sidenav />
+            <Sidenav  batch_code={batch_code} subject_code={subject_code}/>
           </Col>
           <Col xs={6}>
             <h2>List of Students</h2>

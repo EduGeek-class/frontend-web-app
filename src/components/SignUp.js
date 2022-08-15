@@ -35,7 +35,7 @@ function SignUp() {
     }
   }
 
-  var BASE_URL='https://edugeeksuser.pythonanywhere.com/'
+  var BASE_URL='https://edugeeksbackend.pythonanywhere.com/'
   async function onSubmit(e){
     e.preventDefault()
   var response= await axios.post(BASE_URL+'/profiles/',{
