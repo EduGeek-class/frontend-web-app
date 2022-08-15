@@ -24,7 +24,7 @@ function App() {
   return (
     
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
       <Navtop/>
       {/* <Adminpage/> */}
       <Routes>
@@ -43,7 +43,7 @@ function App() {
 
             
           </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
 }

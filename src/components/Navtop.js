@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaBell } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Router } from "react-router-dom";
 function Navtop() {
   const navigate = useNavigate();
   return (
@@ -13,17 +13,16 @@ function Navtop() {
         <Container>
           <Link to="/" style={{textDecoration:"none"}}><Navbar.Brand  >EduGeeks</Navbar.Brand></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-            <Link to="/batches" style={{textDecoration:"none"}}><Nav.Link >Batches</Nav.Link></Link>
-            <Link to="/coupons" style={{textDecoration:"none"}}><Nav.Link >Coupons</Nav.Link></Link>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+            <Link to="/batches" style={{textDecoration:"none",color:"black" ,paddingRight:"20px"}}>Batches</Link>
+            <Link to="/coupons" style={{textDecoration:"none",color:"black"}}>Coupons</Link>
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
           <FaBell />
             <Navbar.Text>
              
-              {/* <a href="#login">User</a> */}
               <Nav>
              
                
