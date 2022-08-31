@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { addVideos } from "../apiClient/apiClient";
 import Swal from 'sweetalert2'
 import { useState } from "react";
-
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom"
 var title;
 var batch_code;
 var video;
@@ -13,13 +13,13 @@ var video;
 
 function AddVideoModal(videos, setVideos) {
   const [show, setShow] = useState(false);
-
+  const { batch_code, subject_code } = useParams()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await addVideos(title, batch_code, video);
+    const res = await addVideos(title, batch_code, subject_code, video);
     console.log(res);
     handleClose();
     Swal.fire({
@@ -53,7 +53,7 @@ function AddVideoModal(videos, setVideos) {
                       title = e.target.value;
                     }}/>
             </Form.Group>
-            <Form.Group
+            {/* <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
@@ -78,8 +78,8 @@ function AddVideoModal(videos, setVideos) {
                 <option value="10">Ten</option>
                 <option value="11">Eleven</option>
                 <option value="12">Twelve</option>
-            </Form.Select> */}
-            </Form.Group>
+            </Form.Select> 
+            </Form.Group> */}
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"

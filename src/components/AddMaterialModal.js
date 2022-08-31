@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { addMaterial } from "../apiClient/apiClient";
 import Swal from 'sweetalert2'
 import { useState } from "react";
-
+import { useParams } from "react-router-dom"
 var title;
 var batch_code;
 var material;
@@ -13,13 +13,13 @@ var material;
 
 function AddMaterialModal() {
   const [show, setShow] = useState(false);
-
+  const { batch_code, subject_code } = useParams()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await addMaterial(title, batch_code, material);
+    const res = await addMaterial(title, batch_code, subject_code, material);
     handleClose();
     Swal.fire({
       icon: 'success',
@@ -52,7 +52,7 @@ function AddMaterialModal() {
                       title = e.target.value;
                     }}/>
             </Form.Group>
-            <Form.Group
+            {/* <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
@@ -60,7 +60,7 @@ function AddMaterialModal() {
               <Form.Control type="text" placeholder="Batch code" onChange={(e) => {
                       batch_code = e.target.value;
                     }}/>
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"

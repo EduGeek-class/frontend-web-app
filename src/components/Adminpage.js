@@ -24,16 +24,15 @@ function Adminpage() {
     <div>
      
       <Row style={{paddingTop:"2rem"}}>
-        <Col>
-        </Col>
-        <Col>
+        
+        {/* <Col>
         <Form>
               <Form.Control type="text" placeholder="Search Batches" />
         </Form>
-        </Col>
-      <Col>
+        </Col> */}
+     
       <ModalPage batches={batches} setBatches={setBatches}/>
-      </Col>
+      
       </Row>
      <div style={{padding:"5rem"}}>
       <Row style={{padding:"40px"}}>

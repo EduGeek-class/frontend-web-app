@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // const baseUrl = 'https://edugeeksuser.pythonanywhere.com/';
-const baseUrl='https://edugeeksbackend.pythonanywhere.com/'
-export const createBatch = async (course_validity, batch_code, course_name,price,description) => {
+const baseUrl='http://127.0.0.1:8000'
+export const createBatch = async (course_validity, course_name,price,description) => {
  
     var body = {
         'course_validity' : course_validity, 
-        'batch_code' : batch_code,
+       
         'course_name' : course_name,
         'price':price,
         'description':description
@@ -17,12 +17,12 @@ export const createBatch = async (course_validity, batch_code, course_name,price
 
 
 
-export const createSubject = async (subject_name, batch_code, subject_code) => {
+export const createSubject = async (subject_name, batch_code) => {
  
     var body = {
         'subject_name' : subject_name, 
         'batch_code' : batch_code,
-        'subject_code' : subject_code,
+        
      
 
     }
@@ -42,15 +42,41 @@ export const getBatchesSingle = async (batch_code) => {
     const res = await axios.get(baseUrl + '/batch/'+ batch_code)
     return res
 }
+
+export const patchBatchesSingle = async (key, value, batch_code) => {
+    var strdata = '{"' + key + '": "' + value + '"}'
+    var data = JSON.parse(strdata)
+      
+    var res
+    var config = {
+      method: 'patch',
+      url: baseUrl + '/batch/' + batch_code,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      res = JSON.stringify(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    return res
+}
 export const getVideos = async (batch_code, subject_code) => {
     const res = await axios.get(baseUrl + '/video/?batch_code=' + batch_code + "&subject_code=" + subject_code)
     return res
 }
 
-export const addVideos = async (title, batch_code, video) => {
+export const addVideos = async (title, batch_code, subject_code, video) => {
     var formdata = new FormData();
     formdata.append('title', title);
     formdata.append('batch_code', batch_code);
+    formdata.append('subject_code', subject_code);
+    // console.log(video)
     for (let i = 0 ; i < video.length ; i++) {
         formdata.append("video", video[i]);
     }
@@ -68,12 +94,13 @@ export const getMaterial = async (batch_code, subject_code) => {
     return res;
 }
 
-export const addMaterial = async (title, batch_code, material) => {
-    var formdata = new FormData();
-    formdata.append('title', title);
-    formdata.append('batch_code', batch_code);
+export const addMaterial = async (title, batch_code, subject_code, material) => {
+    var formdata = new FormData()
+    formdata.append('title', title)
+    formdata.append('batch_code', batch_code)
+    formdata.append('subject_code', subject_code)
     for (let i = 0 ; i < material.length ; i++) {
-        formdata.append("material", material[i]);
+        formdata.append("material", material[i])
     }
 
     const res = await axios.post(baseUrl + '/study_material/', formdata, {

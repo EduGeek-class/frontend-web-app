@@ -20,10 +20,10 @@ function ModalPage(batches, setBatches) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await createBatch(course_validity, batch_code, course_name,price,description);
+    const res = await createBatch(course_validity, course_name,price,description);
       batches.setBatches([...batches.batches, {
       'course_validity' : course_validity, 
-      'batch_code' : batch_code,
+      
       'course_name' : course_name,
       'price':price,
       'description':description,
@@ -33,7 +33,7 @@ function ModalPage(batches, setBatches) {
     Swal.fire({
       icon: 'success',
       title: 'Congratulations...',
-      text: 'File uploaded successfully',
+      text: 'Batch Created successfully',
     })
     setTimeout(function(){
       window.location.reload();
@@ -42,10 +42,11 @@ function ModalPage(batches, setBatches) {
  
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <div className="d-grid gap-2" style={{padding:"0 20% "}}>
+      <Button variant="primary" onClick={handleShow} >
         Create batch
       </Button>
-
+      </div>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Enter Batch details</Modal.Title>
@@ -71,7 +72,7 @@ function ModalPage(batches, setBatches) {
                     }}/>
             </Form.Group>
            
-            <Form.Group
+            {/* <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
@@ -79,7 +80,7 @@ function ModalPage(batches, setBatches) {
               <Form.Control type="text" placeholder="Ex: 220103" onChange={(e) => {
                       batch_code = e.target.value;
                     }}/>
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"

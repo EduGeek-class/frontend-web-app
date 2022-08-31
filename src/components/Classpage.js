@@ -29,13 +29,7 @@ function Classpage() {
       <Row style={{paddingTop:"2rem"}}>
         <Col>
         <Sidenav code={batch_code}/>
-        </Col>
-        <Col>
-        <Form>
-              <Form.Control type="text" placeholder="Search Subjects" />
-        </Form>
-        </Col>
-      <Col>
+        
       <SubModalPage sub={sub} setBatches={setSubject}/>
       </Col>
       </Row>

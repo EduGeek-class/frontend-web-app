@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { createSubject} from "../apiClient/apiClient";
 import Swal from 'sweetalert2'
 import { useState } from "react";
-
+import { useParams } from "react-router-dom"
 var subject_name="";
 var batch_code;
 var subject_code;
@@ -13,16 +13,17 @@ var subject_code;
 
 function SubModalPage(batches, setBatches) {
   const [show, setShow] = useState(false);
-
+  const { batch_code } = useParams()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await createSubject(subject_name, batch_code, subject_code);
-      batches.setBatches([...batches.batches, {
+    const res = await createSubject(subject_name, batch_code)
+    console.log(batches)
+      batches.setBatches([...batches.sub, {
      'subject_name':subject_name,
-     'subject_code':subject_code,
+    
       'batch_code' : batch_code,
       
     }])
@@ -30,7 +31,7 @@ function SubModalPage(batches, setBatches) {
     Swal.fire({
       icon: 'success',
       title: 'Congratulations...',
-      text: 'File uploaded successfully',
+      text: 'Subject Created successfully',
     })
     setTimeout(function(){
       window.location.reload();
@@ -39,10 +40,11 @@ function SubModalPage(batches, setBatches) {
  
   return (
     <div>
+      <div className="d-grid gap-2" style={{padding:"0 20% "}}>
       <Button variant="primary" onClick={handleShow}>
         Create Subject
       </Button>
-
+    </div>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Enter Subject details</Modal.Title>
@@ -58,24 +60,7 @@ function SubModalPage(batches, setBatches) {
                       subject_name = e.target.value;
                     }}/>
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Subject Code</Form.Label>
-              <Form.Control type="text" placeholder="Eg. 221003" onChange={(e) => {
-                      subject_code = e.target.value;
-                    }}/>
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Batch Code</Form.Label>
-              <Form.Control type="text" placeholder="Eg. 2210" onChange={(e) => {
-                      batch_code = e.target.value;
-                    }}/>
-            </Form.Group>
+           
            
             
             
