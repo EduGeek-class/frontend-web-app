@@ -143,3 +143,27 @@ export const getStudents = async (batch_code) => {
     console.log(batch_students)
     return batch_students
 }
+
+export const patchStudent = async (id, batch_codes) => {
+    
+    var data = {'batch_codes': batch_codes}
+      
+    var res
+    var config = {
+      method: 'patch',
+      url: baseUrl + '/user/' + id,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      res = JSON.stringify(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    return res
+}

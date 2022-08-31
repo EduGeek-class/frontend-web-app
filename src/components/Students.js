@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
-import { getStudents } from "../apiClient/apiClient";
+import { getStudents, patchStudent } from "../apiClient/apiClient";
 
 
 import ReactPlayer from "react-player";
@@ -15,11 +15,29 @@ function Students(code) {
   const [student, setStudent] = useState([]);
   const { batch_code, subject_code } = useParams();
   
+
+  var removeStudent =(data)=>{
+    // console.log(student)
+    
+    var updated_batch_codes = data.batch_codes.filter(function(item) {
+      console.log(item)
+      console.log(batch_code)
+      return item != batch_code
+    })
+
+    patchStudent(data.id, updated_batch_codes)
+
+    setStudent(student.filter(function(item) {
+      return item !== data
+    }))
+    console.log(student)
+  }
+
   useEffect(async () => {
     const res = await getStudents(batch_code);
     setStudent(res);
-    console.log(res);
-    console.log(student);
+    // console.log(res);
+    // console.log(student);
   }, []);
   return (
     <div style={{marginTop:"5%"}}>
@@ -41,12 +59,15 @@ function Students(code) {
                         
                       <Card.Text style={{padding:"10px"}}>Phone:{data.phone} <br/> Email :{data.email}
                       <br></br>
-
+                      <Button onClick={() => removeStudent(data)}>Remove</Button>
                       </Card.Text>
                     </Card>
                   ))}
                 </Col>
               </div>
+            </div>
+            <div>
+             
             </div>
           </Col>
           <Col>

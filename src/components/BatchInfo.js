@@ -184,17 +184,7 @@ function BatchInfo() {
           </Col>
         </Row>
       </Form>
-      {/* <Row style={{ padding: "10px 40px" }}>
-        <Col>Batch Code</Col>
-        <Col>
-          <input type="text" defaultValue={batchesinfo.batch_code}></input>
-        </Col>
-        <Col>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Col>
-      </Row> */}
+      
       <Form onSubmit={patchCourseValidity}>
         <Row style={{ padding: "10px 40px" }}>
           <Col>Course Validity</Col>
