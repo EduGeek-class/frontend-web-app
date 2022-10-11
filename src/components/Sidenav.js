@@ -4,120 +4,24 @@ import Timetable from "./Timetable";
 import { Navigation } from "react-minimal-side-navigation";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import { BrowserRouter ,Route} from "react-router-dom";
-
-function Sidenav() {
+import ListGroup from 'react-bootstrap/ListGroup'
+import {Link} from "react-router-dom"
+function Sidenav(code) {
+  console.log(code)
   return (
     <div>
-      <Navigation
-        // you can use your own router's api to get pathname
-        activeItemId="/management/members"
-        onSelect={({ itemId }) => {
-          // maybe push to the route
-          // history.push(itemId);
-        }}
-        items={[
+      
+         
+
+      <ListGroup style={{fontSize:"20px",color:"3B8854"}} >
         
-          {
-            title: "Overview",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Attendance",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Assignment",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Test",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Announcement",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Video",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Live Class",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Study Material",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          {
-            title: "Settings",
-            itemId: "/timetable",
-            // you can use your own custom Icon component as well
-            // icon is optional
-            // elemBefore: () => <Icon name="inbox" />,
-          },
-          
-          {
-            title: "Students",
-            itemId: "/management",
-            // elemBefore: () => <Icon name="users" />,
-            subNav: [
-              {
-                title: "Video",
-                itemId: "/management/projects",
-              },
-              {
-                title: "Settings",
-                itemId: "/management/members",
-              },
-            ],
-          },
-          {
-            title: "Setting",
-            itemId: "/another",
-            subNav: [
-              {
-                title: "Teams",
-                itemId: "/management/teams",
-              },
-            ],
-          },
-          {
-            title: "Video",
-            itemId: "/another",
-            subNav: [
-              {
-                title: "Teams",
-                itemId: "/management/teams",
-              },
-            ],
-          },
-        ]}
-      />
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to={"/video/" + code.batch_code + "/" + code.subject_code}>Video</Link></ListGroup.Item>
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to={"/material/" + code.batch_code + "/" + code.subject_code} >Study Material</Link></ListGroup.Item>
+    <ListGroup.Item><Link style={{textDecoration:"none"}} to={"/profiles/" + code.batch_code + "/" + code.subject_code}> Students</Link></ListGroup.Item>
+    
+    
+   
+  </ListGroup>
     </div>
   );
 }

@@ -35,7 +35,7 @@ function SignUp() {
     }
   }
 
-  var BASE_URL='http://127.0.0.1:8000'
+  var BASE_URL='https://edugeeksbackend.pythonanywhere.com/'
   async function onSubmit(e){
     e.preventDefault()
   var response= await axios.post(BASE_URL+'/profiles/',{

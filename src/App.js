@@ -10,6 +10,12 @@ import Batch from './components/Batch';
 import React, { useState } from 'react';
 import SignUp from './components/SignUp';
 import Coupons from './components/Coupons';
+import StudyMaterial from './components/StudyMaterial';
+import PdfViewer from './components/PdfViewer';
+import Notif from './components/Notif'
+import Students from './components/Students';
+import BatchInfo from './components/BatchInfo';
+import Classpage from './components/Classpage';
 function App() {
   // const [token, setToken] = useState();
   // if(!token) {
@@ -18,21 +24,26 @@ function App() {
   return (
     
     <div className="App">
+      {/* <BrowserRouter> */}
       <Navtop/>
       {/* <Adminpage/> */}
-      <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={<SignUp/>}/>
-          <Route path="/batches" element={<Adminpage/>} />
-          <Route path="/coupons" element={<Coupons/>} />
-          <Route path="/timetable" element={<Timetable/>} />
-  
-          <Route path="/batch" element={<Batch/>} />
+        <Route path="/" element={<Login/>}/>
+          <Route path="/batches" element={localStorage.getItem("edugeek-authorized") === "1" ? <Adminpage/> : <Login/>} />
+          <Route path="/coupons" element={localStorage.getItem("edugeek-authorized") === "1" ? <Coupons/> : <Login/>} />
+          <Route path="/timetable" element={localStorage.getItem("edugeek-authorized") === "1" ? <Timetable/> : <Login/>} />
+          <Route path="/notif" element={localStorage.getItem("edugeek-authorized") === "1" ? <Notif/> : <Login/>}/>
+          <Route path="/video/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Batch/> : <Login/>} />
+          <Route path="/material/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <StudyMaterial/> : <Login/>} />
+          <Route path="/materialstudy" element={localStorage.getItem("edugeek-authorized") === "1" ? <PdfViewer/> : <Login/>} />
+          <Route path="/profiles/:batch_code/:subject_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Students/> : <Login/>}/>
+          <Route path="/getbatch/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <BatchInfo/> : <Login/>} />
+          <Route path="/subjects/:batch_code" element={localStorage.getItem("edugeek-authorized") === "1" ? <Classpage/> : <Login/>} />
+
 
             
           </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
 }

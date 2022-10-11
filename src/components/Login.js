@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { getAdmin } from "../apiClient/apiClient";
+import { useNavigate } from "react-router-dom";
+
+var username = "";
+var password = "";
 
 const Login = () => {
+
+  const [admin, setAdmin] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(async () => {
+    const res = await getAdmin();
+    setAdmin(res.data);
+  }, [])
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    admin.forEach((adm, index) => {
+      console.log(adm.username)
+      console.log(adm.password)
+      if(adm.username === username && adm.password === password) {
+        localStorage.setItem('edugeek-authorized', 1);
+        navigate('/batches', {replace: true});
+        window.location.reload();
+        return;
+      }
+    })
+    console.log('Login Unsuccessful')
+  }
+
   return (
     <>
       <Container>
@@ -15,15 +45,19 @@ const Login = () => {
             sm={12}
             className="p-5 m-auto shadow-sm rounded-lg"
           >
-            <Form>
+            <Form onSubmit={handleLogin}>
               <Form.Group>
-                <Form.Label>Phone</Form.Label>
-                <Form.Control placeholder="Phone Number" />
+                <Form.Label>Username</Form.Label>
+                <Form.Control placeholder="Username" onChange={(e) => {
+                      username = e.target.value;
+                    }}/>
               </Form.Group>
               <br />
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" onChange={(e) => {
+                      password = e.target.value;
+                    }}/>
               </Form.Group>
               <br />
               <Button variant="success btn-block" type="submit">

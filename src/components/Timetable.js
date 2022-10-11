@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React from "react";
-import Cal from "./Cal";
+
 import Form from "react-bootstrap/Form";
 import { FaFilter } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -36,7 +36,7 @@ function Timetable() {
             </div>
           </Col>
           <Col>
-            <Cal />
+            {/* <Cal /> */}
           </Col>
         </Row>
       </Container>

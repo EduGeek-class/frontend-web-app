@@ -1,72 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import Sidenav from "./Sidenav";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { getVideos } from "../apiClient/apiClient";
+import AddVideoModal from "./AddVideoModal";
+
+
+import ReactPlayer from "react-player";
+import Notif from "./Notif";
 function Batch() {
+  const [videos, setVideos] = useState([]);
+  const [playing, setPlaying] = useState(false);
+  const {batch_code, subject_code} = useParams();
+
+  useEffect(async () => {
+    const res = await getVideos(batch_code, subject_code);
+    setVideos(res.data);
+    console.log(res.data);
+    console.log(videos);
+  }, []);
   return (
     <div>
       <Container>
         <Row>
-         <Col>
-         <Sidenav/>
-         </Col>
-          {/* <Col style={{ marginTop: "5%" }}>
-            <Row>Overview</Row>
-            <Row>Announcement</Row>
-            <Row>Videos</Row>
-            <Row>Settings</Row>
-          </Col> */}
-          <Col xs={6}><h2>Class 10 Science</h2>
-          <div style={{marginTop:"5%"}}>
-          <Col style={{padding:"20px"}}>
-            <Row>Batch Start</Row>
-           
-            <Row>Subject</Row>
-          </Col>
           <Col>
-      </Col>
-      <Col>
-      Calendar
-      </Col>
-      <Col>
-      </Col>
-          </div>
+            <Sidenav batch_code={batch_code} subject_code={subject_code} />
           </Col>
-          <Col>
-            <Card border="primary" style={{ width: "18rem" }}>
-              <Card.Header>Header</Card.Header>
-              <Card.Body>
-                <Card.Title>Live Classes</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <br />
+          <Col xs={6}>
+            <Row>
+              {/* <Col xs={6}>
+                <h2>Class 10 Science</h2>
+              </Col> */}
+              <Col xs={6}>
+                <AddVideoModal videos={videos} setVideos={setVideos}/>
+              </Col>
+            </Row>
+            <div style={{ marginTop: "5%" }}>
+              <div onContextMenu={(e) => e.preventDefault()}>
+                <Col style={{ padding: "20px"}}>
+                  
+                  {videos.map((video) => (
+                    
+                    <Card style={{marginBottom:"2rem"}}>
+                      <Card.Body>
+                        <ReactPlayer
+                          config={{ file: { attributes: { controlsList: 'nodownload' } } }}
 
-            <Card border="secondary" style={{ width: "18rem" }}>
-              <Card.Header>Header</Card.Header>
-              <Card.Body>
-                <Card.Title>Zoom Classes</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <br />
-            <Card border="secondary" style={{ width: "18rem" }}>
-              <Card.Header>Header</Card.Header>
-              <Card.Body>
-                <Card.Title>Recent Announcement</Card.Title>
-                <Card.Text>No Announcement</Card.Text>
-              </Card.Body>
-            </Card>
-            <br />
+                          url={video.video}
+                          setPlaying={true}
+                          controls
+                          width="100%"
+                          
+                        
+                        /> 
+                      
+                      <Card.Title>Title: {video.title}</Card.Title>
+
+                        
+                      </Card.Body>
+                    </Card>
+                  ))}
+                </Col>
+              </div>
+            </div>
+          </Col>
+          <Col>
+            <Notif></Notif>
           </Col>
         </Row>
       </Container>
