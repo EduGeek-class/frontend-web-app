@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseUrl = 'https://edugeeksuser.pythonanywhere.com/';
-const baseUrl='https://edugeeksbackend.pythonanywhere.com'
+const baseUrl='http://127.0.0.1:8000/'
 export const createBatch = async (course_validity, course_name,price,description) => {
  
     var body = {
